@@ -1,5 +1,10 @@
 <c:import url="header.jsp"></c:import>
 	<div class="container d-flex justify-content-center flex-sm-column">
+	<c:if test="${dispo}">
+		<div class="alert alert-danger" role="alert">
+	  		Oups, ce mail existe déjà.
+		</div>
+	</c:if>
 		<h1 class="align-self-center h3 mb-3 fw-normal">Inscription</h1>
 		<form class="align-self-center" action="<%= request.getContextPath() %>/signup" method="post">
         	<div class="row col-sm-4 g-3">

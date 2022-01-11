@@ -38,11 +38,22 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		User nouveau = new User(request.getParameter("nom"), request.getParameter("prenom"),
-			request.getParameter("email"), request.getParameter("pwd"));
-		userDao.create(nouveau);
+		String email_saisi = request.getParameter("email");
 		
-		response.sendRedirect("signin");
+		User nouveau = new User(request.getParameter("nom"), request.getParameter("prenom"),
+				email_saisi, request.getParameter("pwd"));
+		boolean exist = false;
+		if(userDao.verifMailDispo(email_saisi)) {
+			
+			userDao.create(nouveau);
+			exist = false;
+			response.sendRedirect("signin");
+			
+		}else {
+			exist = true;
+			request.setAttribute("dispo", exist);
+			doGet(request, response);
+		}
 	}
 
 }

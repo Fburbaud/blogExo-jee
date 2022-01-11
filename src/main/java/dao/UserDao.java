@@ -14,7 +14,6 @@ public class UserDao {
 	
 	public void create(User user) {
 		try {
-			if(verifMailDispo(user.getEmail())) {
 				PreparedStatement sql = connect.prepareStatement("INSERT INTO "+
 					"user (nom, prenom, email, pwd) VALUES (?, ?, ?, PASSWORD(?))");
 				sql.setString(1, user.getNom());
@@ -23,8 +22,6 @@ public class UserDao {
 				sql.setString(4, user.getPwd());
 				
 				sql.executeUpdate();
-			
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
