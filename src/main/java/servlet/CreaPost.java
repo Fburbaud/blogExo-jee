@@ -1,30 +1,23 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.ArticleDao;
-import model.Article;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class Posts
  */
-@WebServlet("/home")
-public class Home extends HttpServlet {
+@WebServlet("/creapost")
+public class CreaPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public CreaPost() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +27,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Article> listeArticles = new ArrayList<>();
-		ArticleDao articleDao = new ArticleDao();
-		listeArticles = articleDao.read();
-		request.setAttribute("listeArticles", listeArticles);
-		request.getRequestDispatcher("home.jsp").forward(request, response);
+		request.getRequestDispatcher("creaPost.jsp").forward(request, response);
 	}
 
 	/**
@@ -46,14 +35,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
-		if(request.getParameter("logOut").equals("logOut")) {
-			session.invalidate();
-			session = request.getSession(false);
-			response.sendRedirect("signin");
-		}
-		//doGet(request, response);
+		doGet(request, response);
 	}
 
 }

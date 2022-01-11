@@ -22,8 +22,9 @@
 	        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
 	      </ul>
 	
-	      <div class="col-md-3 text-end">
+	      <div class="d-flex justify-content-evenly col-md-3 text-end">
 	      	<c:if test="${user != null }">
+	      		<p>Bonjour <c:out value="${user.prenom}"></c:out></p>
 		      	<form method="post" action="<%= request.getContextPath() %>/home">
 			   		<input type="hidden" name="logOut" value="logOut"/>
 					<button class="btn btn-primary" type="submit">Logout</button>
