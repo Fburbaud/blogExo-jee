@@ -39,12 +39,22 @@ public class SignIn extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		User nouveau = new User(request.getParameter("email"), request.getParameter("pwd"));
-		userDao.login(request.getParameter("email"), request.getParameter("pwd"));
-		session.setAttribute("user", nouveau);
+		String email_saisi = request.getParameter("email");
+		String pwd_saisi = request.getParameter("pwd");
+		//User nouveau = new User(email_saisi, pwd_saisi);
+		boolean error = false;
+		if(userDao.login(email_saisi,pwd_saisi) != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", userDao.login(email_saisi,pwd_saisi));
+			response.sendRedirect("home");
+		}else {
+			error = true;
+			request.setAttribute("error", error);
+			doGet(request, response);
+		}
 		
-		response.sendRedirect("home");
+		
+		
 	}
 
 }

@@ -13,6 +13,13 @@ public class User {
 		this.pwd = pwd;
 	}
 
+	public User(String nom, String prenom, String email) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+
 	public User(String nom, String prenom, String email, String pwd) {
 		super();
 		this.nom = nom;

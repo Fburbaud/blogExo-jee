@@ -55,10 +55,11 @@ public class UserDao {
 		return check;
 	}
 	
-	public boolean login(String mail, String mdp) {
-		boolean msg = false;
+	public User login(String mail, String mdp) {
+		//boolean msg = false;
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM user WHERE email=? AND pwd=?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM user"+
+					" WHERE email=? AND pwd=?");
 			sql.setString(1, mail);
 			try {
 				sql.setString(2, encode(mdp));
@@ -69,13 +70,15 @@ public class UserDao {
 			rs = sql.executeQuery();
 			
 			if(rs.next()) {
-				msg = true;
+				//msg = true;
+				User user = new User(rs.getString("nom"), rs.getString("prenom"), rs.getString("email"));
+				return user;
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return msg;
+		return null;
 	}
 	
 	//cryptage du pwd:

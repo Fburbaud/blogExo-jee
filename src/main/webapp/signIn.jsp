@@ -1,5 +1,10 @@
 <c:import url="header.jsp"></c:import>
-	<div class="container d-flex justify-content-center text-center">
+	<div class="container d-flex justify-content-center text-center flex-sm-column align-items-center">
+	<c:if test="${error}">
+		<div class="alert alert-danger" role="alert">
+	  		Erreur, email ou mot de passe incorrect.
+		</div>
+	</c:if>
 	  <form class="row col-sm-4" action="<%= request.getContextPath() %>/signin" method="post">
 	    <h1 class="h3 mb-3 fw-normal">Connection</h1>
 	
