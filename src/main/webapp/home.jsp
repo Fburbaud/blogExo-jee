@@ -6,14 +6,14 @@
 		<c:if test="${listeArticles.size() == 0}">
 			<div class="alert alert-danger" role="alert">
 	  			Pas d'article pour l'instant. Souhaitez-vous créer le premier? 
-	  			<c:if test="${user != null }">
+	  			<c:if test="${user != null}">
 	  			<a class="text-decoration-none" href="${creapost}">
 			      	<button class="btn btn-light">
 			      		Créer un article
 			      	</button>
 			    </a>
 	  			</c:if>
-	  			<c:if test="${user == null }">
+	  			<c:if test="${user == null}">
 	  			<a class="text-decoration-none" href="${signin}">
 			      	<button class="btn btn-light">
 			      		Connectez-vous
