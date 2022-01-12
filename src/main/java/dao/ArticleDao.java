@@ -1,6 +1,5 @@
 package dao;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,7 @@ public class ArticleDao {
 			sql.setString(1, article.getTitre());
 			sql.setString(2, article.getResume());
 			sql.setString(3, article.getContenu());
-			sql.setInt(3, article.getUser().getId_user());
+			sql.setInt(4, article.getUser().getId_user());
 			
 			sql.executeUpdate();
 		} catch (SQLException e) {
@@ -34,14 +33,15 @@ public class ArticleDao {
 	public List<Article> read(){
 		PreparedStatement sql2;
 		try {
-			sql2 = connect.prepareStatement("SELECT * FROM article WHERE isVisible=?");
+			sql2 = connect.prepareStatement("SELECT * FROM article INNER JOIN user"+
+					" ON user.id_user=article.auteur WHERE article.isVisible=?");
 			sql2.setInt(1, 1);
 			rs = sql2.executeQuery();
 			while(rs.next()) {
-				java.util.Date sqlDate = new java.sql.Date(rs.getDate("dateReception").getTime());
+				java.util.Date sqlDate = new java.sql.Date(rs.getDate("date_creation").getTime());
 				Article article = new Article(rs.getInt("id_article"),
 					rs.getString("titre"),rs.getString("resume"), rs.getString("contenu"),
-					sqlDate, new User(rs.getString("prenom"), rs.getString("nom")));
+					sqlDate, new User(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom")));
 				listeArticles.add(article);
 			}
 		} catch (SQLException e) {

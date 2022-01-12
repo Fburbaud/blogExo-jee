@@ -7,14 +7,27 @@ public class User {
 	private String email;
 	private String pwd;
 	
+	public User(int id_user) {
+		super();
+		this.id_user = id_user;
+	}
+
 	public User(String email, String pwd) {
 		super();
 		this.email = email;
 		this.pwd = pwd;
 	}
 
-	public User(String nom, String prenom, String email) {
+	public User(int id_user, String nom, String prenom) {
 		super();
+		this.id_user = id_user;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
+	public User(int id_user, String nom, String prenom, String email) {
+		super();
+		this.id_user = id_user;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;

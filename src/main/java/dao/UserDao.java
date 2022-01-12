@@ -71,7 +71,7 @@ public class UserDao {
 			
 			if(rs.next()) {
 				//msg = true;
-				User user = new User(rs.getString("nom"), rs.getString("prenom"), rs.getString("email"));
+				User user = new User(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"));
 				return user;
 			}
 			

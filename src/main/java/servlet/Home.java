@@ -51,9 +51,8 @@ public class Home extends HttpServlet {
 		if(request.getParameter("logOut").equals("logOut")) {
 			session.invalidate();
 			session = request.getSession(false);
-			response.sendRedirect("signin");
+			response.sendRedirect("home");
 		}
-		//doGet(request, response);
 	}
 
 }
