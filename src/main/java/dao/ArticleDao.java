@@ -49,4 +49,25 @@ public class ArticleDao {
 		}
 		return listeArticles;
 	}
+	
+	public Article findById(int idToFind) {
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM article INNER JOIN user"+
+				" ON user.id_user=article.auteur WHERE article.id_article=?");
+			sql.setInt(1, idToFind);
+			rs = sql.executeQuery();
+			while(rs.next()) {
+				java.util.Date sqlDate = new java.sql.Date(rs.getDate("date_creation").getTime());
+				Article article = new Article(rs.getInt("id_article"),rs.getString("titre"),
+					rs.getString("resume"),rs.getString("contenu"), sqlDate, new User(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom")));
+				return article;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 }

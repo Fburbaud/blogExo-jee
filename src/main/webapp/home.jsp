@@ -44,7 +44,7 @@
 		                                <img src="images/blog/blog-1.jpg" alt="">
 		                                <div class="overlay-b">
 		                                    <div class="overlay-inner">
-		                                        <a href="blog-single.html" class="fa fa-link"></a>
+		                                        <a href="singlepost?idArticle=<c:out value="${article.getId_article()}" />" class="fa fa-link"></a>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -63,8 +63,8 @@
 	                    <div class="col-md-12">
 	                        <div class="pagination text-center">
 	                            <ul>
-	                                <li><a href="javascript:void(0)">1</a></li>
-	                                <li><a href="javascript:void(0)" class="active">2</a></li>
+	                                <li><a href="javascript:void(0)" class="active">1</a></li>
+	                                <li><a href="javascript:void(0)" >2</a></li>
 	                                <li><a href="javascript:void(0)">3</a></li>
 	                                <li><a href="javascript:void(0)">4</a></li>
 	                                <li><a href="javascript:void(0)">...</a></li>
