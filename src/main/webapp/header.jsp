@@ -46,7 +46,7 @@
 				</form>	
 	      	</c:if>
 	      	<c:if test="${user == null }">
-		        <a href="${signin}"><button type="button" class="btn btn-outline-primary me-2">Connection</button></a>
+		        <a href="${signin}"><button type="button" class="btn btn-outline-primary me-2">Connexion</button></a>
 		        <a href="${signup}"><button type="button" class="btn btn-primary">Inscription</button></a>
 	      	</c:if>
 	      </div>

@@ -10,6 +10,11 @@ public class Article {
 	private Date date_creation;
 	private User user;
 	
+	public Article(int id_article) {
+		super();
+		this.id_article = id_article;
+	}
+
 	public Article(String titre, String resume, String contenu) {
 		super();
 		this.titre = titre;

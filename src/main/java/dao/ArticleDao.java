@@ -11,6 +11,7 @@ import model.Article;
 import model.User;
 
 public class ArticleDao {
+	public static Article currentArticle;
 	Connection connect = GetConnection.getConnection();
 	ResultSet rs = null;
 	List<Article> listeArticles = new ArrayList<>();
