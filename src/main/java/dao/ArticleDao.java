@@ -34,8 +34,7 @@ public class ArticleDao {
 		PreparedStatement sql2;
 		try {
 			sql2 = connect.prepareStatement("SELECT * FROM article INNER JOIN user"+
-					" ON user.id_user=article.auteur WHERE article.isVisible=?");
-			sql2.setInt(1, 1);
+					" ON user.id_user=article.auteur");
 			rs = sql2.executeQuery();
 			while(rs.next()) {
 				java.util.Date sqlDate = new java.sql.Date(rs.getDate("date_creation").getTime());
@@ -66,8 +65,16 @@ public class ArticleDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
-		
+	}
+	
+	public void delete(int idToDelete) {
+		try {
+			PreparedStatement sql = connect.prepareStatement("DELETE FROM article WHERE id_article=?");
+			sql.setInt(1, idToDelete);
+			sql.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

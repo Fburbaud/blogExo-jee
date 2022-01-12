@@ -46,7 +46,6 @@ public class CreaPost extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.getAttribute("user");
 		
-		System.out.println(session.getAttribute("user"));
 		User user = (User) session.getAttribute("user");
 		Article nouveau = new Article(request.getParameter("titre"), request.getParameter("resume"),
 				request.getParameter("contenu"), user);

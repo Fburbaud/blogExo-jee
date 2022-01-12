@@ -10,6 +10,35 @@
 	                    <h2 class="blog-title">${article.getTitre()}</h2>
 	                    <span class="blog-meta">${article.getDate_creation()} par ${article.getUser().getNom()} ${article.getUser().getPrenom()} with 3 comments</span>
 	                    <p>${article.getContenu()}</p>
+	                    <c:if test="${user.getId_user() == article.getUser().getId_user()}">
+		                 	<div class="d-flex justify-content-end">
+			                 	<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#idArt-<c:out value="${article.getId_article()}" />">
+						      		<i class="bi bi-trash"></i>
+						      	</button>
+					      	</div>
+					      	<!-- Modal -->
+							<div class="modal fade" id="idArt-<c:out value="${article.getId_article()}" />" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="staticBackdropLabel">Suppression</h5>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							      		Voulez vous vraiment supprimer cet article ?
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+							        <form method="post" action="<%= request.getContextPath() %>/singlepost">
+							      		<input type="hidden" name="purpose" value="D"/>
+							      		<input type="hidden" name="idArticleToDelete" value="${article.getId_article()}"/>
+						        		<button type="submit" class="btn btn-primary">Oui, je confirme</button>
+						        	</form>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+				      	</c:if>
 	                </div>
 	            </div> <!-- /.blog-info -->
 
