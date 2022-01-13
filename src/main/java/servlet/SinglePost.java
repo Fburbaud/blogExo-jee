@@ -74,6 +74,11 @@ public class SinglePost extends HttpServlet {
 			
 		}
 		
+		if(purpose.equals("S")) {
+			int idComToDelete = Integer.parseInt(request.getParameter("idCommentToDelete"));
+			commentDao.delete(idComToDelete);
+		}
+		
 		doGet(request, response);
 	}
 

@@ -54,6 +54,35 @@
 		                                <h4>${commentaire.getUser().getNom()} ${commentaire.getUser().getPrenom()}</h4>
 		                                <span>${commentaire.getCreated_at()}</span>
 		                                <p>${commentaire.getContent()}</p>
+		                                <c:if test="${user.getId_user() == commentaire.getUser().getId_user()}">
+						                 	<div class="d-flex justify-content-end">
+							                 	<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#idComment-<c:out value="${commentaire.getId_comment()}" />">
+										      		<i class="bi bi-trash"></i>
+										      	</button>
+									      	</div>
+									      	<!-- Modal -->
+											<div class="modal fade" id="idComment-<c:out value="${commentaire.getId_comment()}" />" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title" id="staticBackdropLabel">Suppression</h5>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											      		Voulez vous vraiment supprimer ce commentaire ?
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+											        <form method="post" action="<%= request.getContextPath() %>/singlepost?idArticle=<c:out value="${article.getId_article()}" />">
+											      		<input type="hidden" name="purpose" value="S"/>
+											      		<input type="hidden" name="idCommentToDelete" value="${commentaire.getId_comment()}"/>
+										        		<button type="submit" class="btn btn-primary">Oui, je confirme</button>
+										        	</form>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+								      	</c:if>
 		                            </div>
 		                        </div>
 	                        </c:forEach>

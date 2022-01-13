@@ -50,4 +50,14 @@ public class CommentDao {
 		}
 		return listeComments;
 	}
+	
+	public void delete(int idToDelete) {
+		try {
+			PreparedStatement sql = connect.prepareStatement("DELETE FROM commentaire WHERE id_commentaire=?");
+			sql.setInt(1, idToDelete);
+			sql.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
