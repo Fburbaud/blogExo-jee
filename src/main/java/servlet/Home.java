@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.ArticleDao;
 import model.Article;
+import model.Comment;
 
 /**
  * Servlet implementation class Home
@@ -38,6 +39,7 @@ public class Home extends HttpServlet {
 		ArticleDao articleDao = new ArticleDao();
 		listeArticles = articleDao.read();
 		request.setAttribute("listeArticles", listeArticles);
+
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 

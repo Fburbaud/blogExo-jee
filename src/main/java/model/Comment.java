@@ -17,6 +17,16 @@ public class Comment {
 		this.content = content;
 		this.article = article;
 	}
+	
+
+	public Comment(int id_comment, User user, Date created_at, String content) {
+		super();
+		this.id_comment = id_comment;
+		this.user = user;
+		this.created_at = created_at;
+		this.content = content;
+	}
+
 
 	public Comment(User user, String content, Article article) {
 		super();

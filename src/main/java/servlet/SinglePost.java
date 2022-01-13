@@ -22,9 +22,9 @@ import model.User;
 @WebServlet("/singlepost")
 public class SinglePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static Article currentArticle;
 	ArticleDao articleDao = new ArticleDao();
-    CommentDao commentDao = new CommentDao();   
+    CommentDao commentDao = new CommentDao();
+    List<Comment> listComments = new ArrayList<>();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,9 +43,8 @@ public class SinglePost extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("idArticle"));
 		request.setAttribute("article", articleDao.findById(id));
-		
-		List<Comment> listComments = new ArrayList<>();
-		listComments = commentDao.read();
+		listComments.clear();
+		listComments = commentDao.read(id);
 		request.setAttribute("listComments", listComments);
 		
 		request.getRequestDispatcher("singlePost.jsp").forward(request, response);
@@ -61,7 +60,6 @@ public class SinglePost extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		String purpose = request.getParameter("purpose");
-		//String submitComment = request.getParameter("submitCommentaire");
 						
 		if(purpose.equals("D")) {
 			int idToDelete = Integer.parseInt(request.getParameter("idArticleToDelete"));
@@ -73,6 +71,7 @@ public class SinglePost extends HttpServlet {
 			int idToComment = Integer.parseInt(request.getParameter("idArticleToComment"));
 			Comment nouveau = new Comment(user, request.getParameter("contenu"), new Article(idToComment));
 			commentDao.create(nouveau);
+			
 		}
 		
 		doGet(request, response);

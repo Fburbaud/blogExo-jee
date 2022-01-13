@@ -37,7 +37,7 @@
 	                    </div> <!-- /.section-header -->
                		</div> <!-- /.row -->
 	                <div class="row">
-	                    <div class="blog-masonry masonry-true">
+	                    <div class="blog-masonry masonry-true d-flex">
 		                	<c:forEach items="${listeArticles}" var="article">
 	                       		<div class="post-masonry col-md-4 col-sm-6">
 		                            <div class="blog-thumb">

@@ -64,7 +64,7 @@
 	        <div class="row">
 	            <div class="col-md-12 comment-form">
 	            	<c:if test="${user != null}">
-	            		<form method="post" action="<%= request.getContextPath() %>/singlepost">
+	            		<form method="post" action="<%= request.getContextPath() %>/singlepost?idArticle=<c:out value="${article.getId_article()}" />">
 			                <input type="hidden" name="purpose" value="C"/>
 			                <h2 class="comment-heading">Laisser un commentaire</h2>
 			                <div class="box-content">
